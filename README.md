@@ -3,6 +3,11 @@
 A comprehensive gym management system built using **Spring Boot** (backend), **React** (frontend), and **MySQL** (database). The system is designed for gym staff and managers to manage members, subscriptions. It includes features like member registration, subscription tracking, and revenue tracking.
 
 ---
+## Application Screenshot
+
+![App Screenshot](Frontend/gym/src/assets/Application Picture.png).
+
+---
 
 ## Features
 
