@@ -5,7 +5,7 @@ A comprehensive gym management system built using **Spring Boot** (backend), **R
 ---
 ## Application Screenshot
 
-![App Screenshot](frontend/public/images/gym-dashboard.png)
+![App Screenshot](Frontend/gym/src/assets/Application Picture.png)
 
 ---
 
