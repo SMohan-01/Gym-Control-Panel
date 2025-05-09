@@ -1,0 +1,15 @@
+package in.mohan.gym_management_system.entity;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
+public class AdminEntity {
+	
+	@Id
+	private String emailAddress;
+	private String name;
+	private String password;
+	private String MobileNumber;
+
+}

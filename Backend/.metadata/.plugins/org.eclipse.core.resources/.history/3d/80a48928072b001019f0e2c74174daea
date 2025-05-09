@@ -1,0 +1,6 @@
+package in.mohan.gym_management_system.service;
+
+public class AdminService implements IAdminService{
+	
+
+}

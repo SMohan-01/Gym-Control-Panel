@@ -1,0 +1,9 @@
+package in.mohan.gym_management_system.utility;
+
+import org.springframework.stereotype.Component;
+
+
+@Component
+public class JwtUtility {
+
+}

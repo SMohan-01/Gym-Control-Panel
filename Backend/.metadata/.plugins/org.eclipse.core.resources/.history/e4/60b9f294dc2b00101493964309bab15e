@@ -1,0 +1,169 @@
+package in.mohan.gym_management_system.entity;
+
+import jakarta.persistence.*;
+import java.time.LocalDate;
+
+@Entity
+@Table(name = "members")
+public class MemberEntity {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
+	private String fullName;
+
+	@Column(unique = true, nullable = false)
+	private String emailAddress;
+
+	private String phoneNumber;
+
+	private String gender;
+
+	private LocalDate dateOfBirth;
+
+	private String address;
+
+	private LocalDate membershipStartDate;
+
+	private LocalDate membershipEndDate;
+
+	private String membershipType;
+
+	private boolean active;
+	
+	private String Tar
+	
+	public MemberEntity() {
+		super();
+	}
+
+	public MemberEntity(String fullName, String emailAddress, String phoneNumber, String gender, LocalDate dateOfBirth,
+			String address, LocalDate membershipStartDate, LocalDate membershipEndDate, String membershipType,
+			boolean active) {
+		super();
+		this.fullName = fullName;
+		this.emailAddress = emailAddress;
+		this.phoneNumber = phoneNumber;
+		this.gender = gender;
+		this.dateOfBirth = dateOfBirth;
+		this.address = address;
+		this.membershipStartDate = membershipStartDate;
+		this.membershipEndDate = membershipEndDate;
+		this.membershipType = membershipType;
+		this.active = active;
+	}
+
+	public MemberEntity(Long id, String fullName, String emailAddress, String phoneNumber, String gender,
+			LocalDate dateOfBirth, String address, LocalDate membershipStartDate, LocalDate membershipEndDate,
+			String membershipType, boolean active) {
+		super();
+		this.id = id;
+		this.fullName = fullName;
+		this.emailAddress = emailAddress;
+		this.phoneNumber = phoneNumber;
+		this.gender = gender;
+		this.dateOfBirth = dateOfBirth;
+		this.address = address;
+		this.membershipStartDate = membershipStartDate;
+		this.membershipEndDate = membershipEndDate;
+		this.membershipType = membershipType;
+		this.active = active;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getFullName() {
+		return fullName;
+	}
+
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
+
+	public String getEmailAddress() {
+		return emailAddress;
+	}
+
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public LocalDate getDateOfBirth() {
+		return dateOfBirth;
+	}
+
+	public void setDateOfBirth(LocalDate dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public LocalDate getMembershipStartDate() {
+		return membershipStartDate;
+	}
+
+	public void setMembershipStartDate(LocalDate membershipStartDate) {
+		this.membershipStartDate = membershipStartDate;
+	}
+
+	public LocalDate getMembershipEndDate() {
+		return membershipEndDate;
+	}
+
+	public void setMembershipEndDate(LocalDate membershipEndDate) {
+		this.membershipEndDate = membershipEndDate;
+	}
+
+	public String getMembershipType() {
+		return membershipType;
+	}
+
+	public void setMembershipType(String membershipType) {
+		this.membershipType = membershipType;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
+	@Override
+	public String toString() {
+		return "MemberEntity [id=" + id + ", fullName=" + fullName + ", emailAddress=" + emailAddress + ", phoneNumber="
+				+ phoneNumber + ", gender=" + gender + ", dateOfBirth=" + dateOfBirth + ", address=" + address
+				+ ", membershipStartDate=" + membershipStartDate + ", membershipEndDate=" + membershipEndDate
+				+ ", membershipType=" + membershipType + ", active=" + active + "]";
+	}
+}

@@ -1,0 +1,15 @@
+package in.mohan.gym_management_system.repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import in.mohan.gym_management_system.entity.PackageEntity;
+
+@Repository
+public interface PackageRepository extends JpaRepository<PackageEntity, Long>{
+	
+	List<PackageEntity> findByActive(Boolean active);
+
+}

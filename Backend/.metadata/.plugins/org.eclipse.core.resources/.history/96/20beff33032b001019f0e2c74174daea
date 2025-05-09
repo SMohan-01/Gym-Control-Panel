@@ -1,0 +1,8 @@
+package in.mohan.gym_management_system.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import in.mohan.gym_management_system.entity.AdminEntity;
+
+public interface AdminRepository extends JpaRepository<AdminEntity, String>{
+
+}

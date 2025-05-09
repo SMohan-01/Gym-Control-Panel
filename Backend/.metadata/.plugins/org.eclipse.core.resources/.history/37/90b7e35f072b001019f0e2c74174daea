@@ -1,0 +1,31 @@
+package in.mohan.gym_management_system.service;
+
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import in.mohan.gym_management_system.entity.AdminEntity;
+import in.mohan.gym_management_system.exception.AdminNotExistException;
+import in.mohan.gym_management_system.repository.AdminRepository;
+import in.mohan.gym_management_system.utility.JwtUtility;
+
+public class AdminService implements IAdminService{
+	
+	private AdminRepository adminRepository;
+	private JwtUtility jwtUtility;
+	private PasswordEncoder passwordEncoder;
+	
+
+	public AdminService(AdminRepository adminRepository, JwtUtility jwtUtility, PasswordEncoder passwordEncoder) {
+		super();
+		this.adminRepository = adminRepository;
+		this.jwtUtility = jwtUtility;
+		this.passwordEncoder = passwordEncoder;
+	}
+
+
+	@Override
+	public AdminEntity login(AdminEntity request) throws AdminNotExistException {
+		return null;
+	}
+	
+
+}

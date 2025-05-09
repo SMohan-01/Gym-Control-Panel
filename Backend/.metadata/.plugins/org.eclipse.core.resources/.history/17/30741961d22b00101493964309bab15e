@@ -1,0 +1,5 @@
+package in.mohan.gym_management_system.entity;
+
+public class MemberEntity {
+
+}

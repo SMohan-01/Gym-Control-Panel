@@ -1,0 +1,54 @@
+package in.mohan.gym_management_system.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import in.mohan.gym_management_system.entity.PackageEntity;
+import in.mohan.gym_management_system.exception.PackageAlreadyExistException;
+import in.mohan.gym_management_system.exception.PackageNotExistException;
+import in.mohan.gym_management_system.repository.PackageRepository;
+
+@Service
+public class PackageService implements IPackageService{
+	
+	private final PackageRepository packageRepository;
+
+	@Autowired
+	public PackageService(PackageRepository packageRepository) {
+		super();
+		this.packageRepository = packageRepository;
+	}
+
+	@Override
+	public List<PackageEntity> getAllPackages() throws PackageNotExistException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<PackageEntity> getActivePackages() throws PackageNotExistException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public PackageEntity createPackage(PackageEntity packageEntity) throws PackageAlreadyExistException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public PackageEntity updatePackage(Long id, PackageEntity packageEntity) throws PackageNotExistException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void deletePackage(Long id) throws PackageNotExistException {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

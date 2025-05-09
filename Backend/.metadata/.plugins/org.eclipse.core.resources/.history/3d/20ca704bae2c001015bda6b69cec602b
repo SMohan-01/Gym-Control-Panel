@@ -1,0 +1,25 @@
+package in.mohan.gym_management_system.entity;
+
+import jakarta.persistence.Entity;
+
+@Entity
+public class PackageEntity {
+	
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false)
+    private String packageName;  // e.g., "Monthly", "Quarterly", "Annual"
+
+    @Column(nullable = false)
+    private BigDecimal price;  // Price for the package
+
+    @Column(nullable = false)
+    private Integer durationInMonths;  // Duration in months (e.g., 1 for monthly, 3 for quarterly)
+
+    @Column(nullable = false)
+    private Boolean active = true;  // To track if the package is active or deactivated
+
+
+}

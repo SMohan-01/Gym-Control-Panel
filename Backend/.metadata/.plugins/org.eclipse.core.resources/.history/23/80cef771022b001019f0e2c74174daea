@@ -1,0 +1,69 @@
+package in.mohan.gym_management_system.entity;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "admin")
+public class AdminEntity {
+	
+	@Id
+	private String emailAddress;
+	private String name;
+	private String password;
+	private String mobileNumber;
+	
+	public AdminEntity() {
+		super();
+	}
+
+	public AdminEntity(String emailAddress, String name, String password, String mobileNumber) {
+		super();
+		this.emailAddress = emailAddress;
+		this.name = name;
+		this.password = password;
+		mobileNumber = mobileNumber;
+	}
+
+	public String getEmailAddress() {
+		return emailAddress;
+	}
+
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getMobileNumber() {
+		return mobileNumber;
+	}
+
+	public void setMobileNumber(String mobileNumber) {
+		mobileNumber = mobileNumber;
+	}
+
+	@Override
+	public String toString() {
+		return "AdminEntity [emailAddress=" + emailAddress + ", name=" + name + ", password=" + password
+				+ ", MobileNumber=" + mobileNumber + "]";
+	}
+	
+	
+
+}

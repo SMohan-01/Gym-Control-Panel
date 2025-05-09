@@ -1,0 +1,54 @@
+package in.mohan.gym_management_system.entity;
+
+import jakarta.persistence.*;
+import java.time.LocalDate;
+
+@Entity
+@Table(name = "members")
+public class MemberEntity {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
+	private String fullName;
+
+	@Column(unique = true, nullable = false)
+	private String emailAddress;
+
+	private String phoneNumber;
+
+	private String gender;
+
+	private LocalDate dateOfBirth;
+
+	private String address;
+
+	private LocalDate membershipStartDate;
+
+	private LocalDate membershipEndDate;
+
+	private String membershipType;
+
+	private boolean active;
+	
+	public MemberEntity() {
+		super();
+	}
+
+	public MemberEntity(String fullName, String emailAddress, String phoneNumber, String gender, LocalDate dateOfBirth,
+			String address, LocalDate membershipStartDate, LocalDate membershipEndDate, String membershipType,
+			boolean active) {
+		super();
+		this.fullName = fullName;
+		this.emailAddress = emailAddress;
+		this.phoneNumber = phoneNumber;
+		this.gender = gender;
+		this.dateOfBirth = dateOfBirth;
+		this.address = address;
+		this.membershipStartDate = membershipStartDate;
+		this.membershipEndDate = membershipEndDate;
+		this.membershipType = membershipType;
+		this.active = active;
+	}
+}

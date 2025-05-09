@@ -1,0 +1,9 @@
+package in.mohan.gym_management_system.exception;
+
+public class PackageNotExistException extends Exception{
+	
+	public PackageNotExistException(String message) {
+		super(message);
+	}
+
+}

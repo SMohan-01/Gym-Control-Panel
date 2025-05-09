@@ -1,0 +1,13 @@
+package in.mohan.gym_management_system.repository;
+
+import java.util.Optional;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import in.mohan.gym_management_system.entity.MemberEntity;
+
+
+@Repository
+public interface MemberRepository extends JpaRepository<MemberEntity, Long>{
+	
+	Optional<MemberEntity> findByEmailAddress(String emailAddress);
+}

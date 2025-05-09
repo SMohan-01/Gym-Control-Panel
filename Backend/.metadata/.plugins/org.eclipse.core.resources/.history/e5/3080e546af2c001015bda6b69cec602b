@@ -1,0 +1,19 @@
+package in.mohan.gym_management_system.service;
+
+import java.util.List;
+import in.mohan.gym_management_system.entity.PackageEntity;
+import in.mohan.gym_management_system.exception.PackageNotExistException;
+
+public interface IPackageService {
+
+	public List<PackageEntity> getAllPackages() throws PackageNotExistException;
+
+	public List<PackageEntity> getActivePackages() throws PackageNotExistException;
+
+	public PackageEntity createPackage(PackageEntity packageEntity);
+
+	public PackageEntity updatePackage(Long id, PackageEntity packageEntity) throws PackageNotExistException;
+
+	public void deletePackage(Long id);
+
+}

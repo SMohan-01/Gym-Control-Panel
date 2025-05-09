@@ -1,0 +1,9 @@
+package in.mohan.gym_management_system.exception;
+
+public class MemberAlreadyExistException extends Exception{
+	
+	public MemberAlreadyExistException(String message) {
+		super(message);
+	}
+
+}

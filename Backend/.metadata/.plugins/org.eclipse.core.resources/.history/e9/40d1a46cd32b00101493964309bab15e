@@ -1,0 +1,7 @@
+package in.mohan.gym_management_system.service;
+
+public interface IMemberService {
+	
+	public MemberEntity registerMember(MemberEntity memberEntity);
+
+}

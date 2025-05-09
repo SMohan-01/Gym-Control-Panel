@@ -1,0 +1,9 @@
+package in.mohan.gym_management_system.service;
+
+import in.mohan.gym_management_system.entity.AdminEntity;
+
+public interface IAdminService {
+	
+	public AdminEntity login(AdminEntity request);
+
+}

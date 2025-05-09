@@ -1,0 +1,24 @@
+package in.mohan.gym_management_system.service;
+
+import java.util.List;
+
+import in.mohan.gym_management_system.entity.MemberEntity;
+import in.mohan.gym_management_system.exception.MemberAlreadyExistException;
+import in.mohan.gym_management_system.exception.MemberNotExistException;
+
+
+public interface IMemberService {
+	
+	public MemberEntity registerMember(MemberEntity memberEntity) throws MemberAlreadyExistException;
+	
+	public MemberEntity getParticularMember(String email) throws MemberNotExistException;
+	
+	public List<MemberEntity> fetchAllMembers() throws MemberNotExistException;
+	
+	public MemberEntity updateMember(Long id, MemberEntity updatedMember) throws MemberNotExistException;
+	
+	public boolean deleteMember(Long id) throws MemberNotExistException;
+	
+	public MemberEntity renewMembershipPlan(Long id, String membershipType) throws MemberNotExistException;
+
+}

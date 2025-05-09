@@ -1,0 +1,146 @@
+package in.mohan.gym_management_system.service;
+
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import in.mohan.gym_management_system.entity.MemberEntity;
+import in.mohan.gym_management_system.exception.MemberAlreadyExistException;
+import in.mohan.gym_management_system.exception.MemberNotExistException;
+import in.mohan.gym_management_system.repository.MemberRepository;
+
+@Service
+public class MemberService implements IMemberService {
+
+	private final MemberRepository memberRepository;
+
+	@Autowired
+	public MemberService(MemberRepository memberRepository) {
+		super();
+		this.memberRepository = memberRepository;
+	}
+
+	private LocalDate calculateMembershipEndDate(LocalDate startDate, String membershipType) {
+		System.out.println(membershipType);
+		switch (membershipType.toLowerCase()) {
+		case "monthly":
+			return startDate.plusMonths(1);
+		case "quarterly":
+			return startDate.plusMonths(3);
+		case "halfyearly":
+			return startDate.plusMonths(6);
+		case "annual":
+			return startDate.plusYears(1);
+		default:
+			throw new IllegalArgumentException("Invalid membership type: " + membershipType);
+		}
+	}
+
+	@Override
+	public MemberEntity registerMember(MemberEntity memberEntity) throws MemberAlreadyExistException {
+		Optional<MemberEntity> fetchedMember = memberRepository.findByEmailAddress(memberEntity.getEmailAddress());
+		if (fetchedMember.isPresent()) {
+			throw new MemberAlreadyExistException("Member Already Exist");
+		} else {
+			LocalDate startDate = LocalDate.now();
+			LocalDate endDate = calculateMembershipEndDate(startDate, memberEntity.getMembershipType());
+			memberEntity.setMembershipStartDate(startDate);
+			memberEntity.setMembershipEndDate(endDate);
+			memberEntity.setAmountPaid(true);
+			memberEntity.setActive(true);
+			return memberRepository.save(memberEntity);
+		}
+	}
+
+	@Override
+	public MemberEntity getParticularMember(String email) throws MemberNotExistException {
+		Optional<MemberEntity> fetchedMember = memberRepository.findByEmailAddress(email);
+		if (fetchedMember.isEmpty()) {
+			throw new MemberNotExistException("Member Not Exist");
+		} else {
+			return fetchedMember.get();
+		}
+	}
+
+	@Override
+	public List<MemberEntity> fetchAllMembers() throws MemberNotExistException {
+		List<MemberEntity> fetchedMember = memberRepository.findAll();
+		if (fetchedMember.isEmpty()) {
+			throw new MemberNotExistException("Member Not Exist");
+		}
+
+		return fetchedMember;
+	}
+
+	@Override
+	public MemberEntity updateMember(Long id, MemberEntity updatedMember) throws MemberNotExistException {
+		Optional<MemberEntity> fetchedMember = memberRepository.findById(id);
+		MemberEntity existing = fetchedMember.get();
+		if (fetchedMember.isEmpty()) {
+			throw new MemberNotExistException("Member Not Exist");
+		} else {
+			if (!existing.getMembershipType().equalsIgnoreCase(updatedMember.getMembershipType())) {
+				LocalDate newStartDate = LocalDate.now();
+				LocalDate newEndDate = calculateMembershipEndDate(newStartDate, updatedMember.getMembershipType());
+				existing.setMembershipStartDate(newStartDate);
+				existing.setMembershipEndDate(newEndDate);
+				existing.setMembershipType(updatedMember.getMembershipType());
+			}
+			
+			existing.setFullName(updatedMember.getFullName());
+			existing.setEmailAddress(updatedMember.getEmailAddress());
+			existing.setPhoneNumber(updatedMember.getPhoneNumber());
+			existing.setGender(updatedMember.getGender());
+			existing.setDateOfBirth(updatedMember.getDateOfBirth());
+			existing.setAddress(updatedMember.getAddress());
+			existing.setMembershipType(updatedMember.getMembershipType());
+			existing.setMembershipStartDate(updatedMember.getMembershipStartDate());
+			existing.setMembershipEndDate(updatedMember.getMembershipEndDate());
+			existing.setAmountPaid(updatedMember.isAmountPaid());
+			existing.setActive(updatedMember.isActive());
+			
+			return memberRepository.save(existing);
+		}
+	}
+
+	@Override
+	public boolean deleteMember(Long id) throws MemberNotExistException {
+		Optional<MemberEntity> fetchedMember = memberRepository.findById(id);
+		boolean isDeleted = false;
+		if (fetchedMember.isEmpty()) {
+			throw new MemberNotExistException("Member Not Exist");
+		} else {
+			memberRepository.deleteById(id);
+			isDeleted = true;
+		}
+		return isDeleted;
+	}
+
+	@Override
+	public MemberEntity renewMembershipPlan(Long id, String membershipType) throws MemberNotExistException {
+		Optional<MemberEntity> fetchedMember = memberRepository.findById(id);
+		System.out.println(membershipType);
+		if (fetchedMember.isEmpty()) {
+			throw new MemberNotExistException("Member Not Exist");
+		}
+		else {
+			MemberEntity member = fetchedMember.get();
+			LocalDate newStartDate = LocalDate.now();
+	        LocalDate newEndDate = calculateMembershipEndDate(newStartDate, membershipType);
+
+	        member.setMembershipType(membershipType);
+	        member.setMembershipStartDate(newStartDate);
+	        member.setMembershipEndDate(newEndDate);
+	        member.setActive(true);
+
+	        return memberRepository.save(member);
+		}
+	}
+
+	@Override
+	public List<MemberEntity> getExpiredMembers() throws MemberNotExistException {
+		LocalDate today = LocalDate.now();
+	    return memberRepository.findByMembershipEndDateBeforeAndActiveTrue(today);
+	}
+}

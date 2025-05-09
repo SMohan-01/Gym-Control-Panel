@@ -1,0 +1,13 @@
+package in.mohan.gym_management_system.service;
+
+import in.mohan.gym_management_system.entity.AdminEntity;
+import in.mohan.gym_management_system.exception.AdminNotExistException;
+
+
+public interface IAdminService {
+	
+	public String login(AdminEntity request) throws AdminNotExistException;
+	
+	public AdminEntity getAdminProfile(String emailAddress) throws AdminNotExistException 
+
+}

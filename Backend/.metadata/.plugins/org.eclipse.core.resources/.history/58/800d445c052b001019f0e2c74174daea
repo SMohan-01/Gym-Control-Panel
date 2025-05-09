@@ -1,0 +1,18 @@
+package in.mohan.gym_management_system.utility;
+
+import io.jsonwebtoken.*;
+import io.jsonwebtoken.security.Keys;
+import org.springframework.stereotype.Component;
+
+
+@Component
+public class JwtUtility {
+	
+	private String SECRET_KEY = "thisisthesecretkeyievercreatedinmydevelopment";
+	private final long EXPIRATION_TIME = 1000 * 60 * 60; // 1 hour
+	
+	private Key getSigningKey() {
+        return Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
+    }
+
+}

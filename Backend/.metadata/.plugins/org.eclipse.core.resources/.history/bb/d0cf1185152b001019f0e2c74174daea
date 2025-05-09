@@ -1,0 +1,51 @@
+package in.mohan.gym_management_system.service;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import in.mohan.gym_management_system.entity.AdminEntity;
+import in.mohan.gym_management_system.exception.AdminNotExistException;
+import in.mohan.gym_management_system.repository.AdminRepository;
+import in.mohan.gym_management_system.utility.JwtUtility;
+
+@Service
+public class AdminService implements IAdminService{
+	
+	private AdminRepository adminRepository;
+	private JwtUtility jwtUtility;
+	
+	@Autowired
+	public AdminService(AdminRepository adminRepository, JwtUtility jwtUtility) {
+		super();
+		this.adminRepository = adminRepository;
+		this.jwtUtility = jwtUtility;
+	}
+
+
+	@Override
+	public String login(AdminEntity request) throws AdminNotExistException {
+		Optional<AdminEntity> fetchedAdmin = adminRepository.findByEmailAddress(request.getEmailAddress());
+		if(fetchedAdmin.isEmpty()) {
+			throw new AdminNotExistException("Admin Not Exist!");
+		}
+		else {
+			if (!request.getPassword().equals(fetchedAdmin.get().getPassword()) ) {
+	            throw new RuntimeException("Invalid credentials");
+	        }
+			String token = jwtUtility.generateToken(fetchedAdmin.get().getEmailAddress());
+	        return token ;
+		}
+	}
+	
+	@Override
+	public AdminEntity getProfile(String emailAddress) throws UserProfileNotExistException {
+		Optional<UserEntity> fetchedUser = userRepository.findByEmailAddress(emailAddress);
+		if(fetchedUser.isEmpty()) {
+			throw new UserProfileNotExistException("User with the given emailAddress not Exist");
+		}
+		else {
+			return fetchedUser.get();
+		}
+	}
+}

@@ -1,0 +1,13 @@
+package in.mohan.gym_management_system.utility;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+
+@Component
+public class JwtUtility {
+	
+	@Value("${jwt.secret.key}")
+	private String secretKey;
+
+}

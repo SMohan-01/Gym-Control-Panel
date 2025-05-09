@@ -1,0 +1,33 @@
+package in.mohan.gym_management_system.utility;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.stereotype.Component;
+
+import io.jsonwebtoken.Jwts;
+
+@Component
+public class JwtUtility {
+
+	private String SECRET_KEY = "thisisthesecretkeyievercreatedinmydevelopment";
+	private final long EXPIRATION_TIME = 1000 * 60 * 60; // 1 hour
+
+	public String generateToken(String emailAddress) {
+
+		Map<String, Object> claims = new HashMap()<>();
+		return createToken(claims, emailAddress);
+	}
+	
+	private String createToken(Map<String, Object> claims, String emailAddress) {
+		return Jwts.builder()
+				.setClaims(claims)
+				.setSubject(emailAddress)
+				.setIssuedAt(new Date(System.currentTimeMillis()))
+				.setExpiration(new Date(System.currentTimeMillis()+1000*60*60*10))
+				.signWith(SignatureAlgorithm.HS256, secretKey)
+				.compact();
+	}
+	
+
+}

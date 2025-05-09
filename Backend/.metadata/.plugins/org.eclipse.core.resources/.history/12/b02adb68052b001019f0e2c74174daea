@@ -1,0 +1,17 @@
+package in.mohan.gym_management_system.utility;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class JwtUtility {
+
+	private String SECRET_KEY = "thisisthesecretkeyievercreatedinmydevelopment";
+	private final long EXPIRATION_TIME = 1000 * 60 * 60; // 1 hour
+
+	public String generateToken(String emailAdde) {
+
+		Map<String, Object> claims = new HashMap<>();
+		return createToken(claims, userDetails.getUsername());
+	}
+
+}
